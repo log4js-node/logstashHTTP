@@ -7,7 +7,7 @@ const appender = require('../../lib');
 function setupLogging(category, options) {
   const fakeAxios = {
     create: function (config) {
-      this.config = config;
+      fakeAxios.config = config;
       return {
         post: function (emptyString, event) {
           fakeAxios.args = [emptyString, event];
@@ -28,7 +28,7 @@ function setupLogging(category, options) {
     }
   };
 
-  const log4js = sandbox.require('log4js', {
+  const appenderModule = sandbox.require('../../lib', {
     requires: {
       axios: fakeAxios
     },
@@ -37,7 +37,14 @@ function setupLogging(category, options) {
     }
   });
 
-  options.type = './lib';
+  const log4js = sandbox.require('log4js', {
+    requires: {
+      '@log4js-node/logstashHTTP': appenderModule
+    },
+    ignoreMissing: true
+  });
+
+  options.type = '@log4js-node/logstashHTTP';
   log4js.configure({
     appenders: { http: options },
     categories: { default: { appenders: ['http'], level: 'trace' } }
@@ -108,6 +115,24 @@ test('logstashappender', (batch) => {
       assert.equal(setup.fakeConsole.msg, 'log4js.logstashHTTP Appender error: oh dear');
       assert.end();
     });
+    t.end();
+  });
+
+  batch.test('should include stack traces in errors', (t) => {
+    const setup = setupLogging('myCategory', {
+      application: 'logstash-sample',
+      logType: 'application',
+      logChannel: 'sample',
+      url: 'http://localhost/receivers/rx1'
+    });
+
+    setup.logger.error('Log event #1', new Error('something happened'));
+
+    const packet = setup.fakeAxios.args[1].split('\n');
+    const eventBody = JSON.parse(packet[1]);
+
+    t.match(eventBody.message, /Log event #1 Error: something happened/);
+    t.match(eventBody.message, /at Test.batch.test/);
     t.end();
   });
 
