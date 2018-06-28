@@ -3,12 +3,12 @@
 The logstash appenders for [log4js](https://log4js-node.github.io/log4js-node) send NDJSON formatted log events to [logstash](https://www.elastic.co/products/logstash) receivers. This appender uses HTTP to send the events (there is another logstash appender that uses [UDP](https://github.com/log4js-node/logstashUDP)).
 
 ```bash
-npm install log4js @log4js-node/logstashHTTP
+npm install log4js @log4js-node/logstash-http
 ```
 
 ## Configuration
 
-* `type` - `@log4js-node/logstashHTTP`
+* `type` - `@log4js-node/logstash-http`
 * `url` - `string` - logFaces receiver servlet URL
 * `application` - `string` (optional) - used to identify your application's logs
 * `logChannel` - `string` (optional) - also used to identify your application's logs [but in a more specific way]
@@ -22,7 +22,7 @@ This appender will also pick up Logger context values from the events, and add t
 ```javascript
 log4js.configure({
   appenders: {
-    logstash: { type: '@log4js-node/logstashHTTP', url: 'http://localhost:9200/_bulk', application: 'logstash-log4js', logType: 'application', logChannel: 'node' }
+    logstash: { type: '@log4js-node/logstash-http', url: 'http://localhost:9200/_bulk', application: 'logstash-log4js', logType: 'application', logChannel: 'node' }
   },
   categories: {
     default: { appenders: [ 'logstash' ], level: 'info' }

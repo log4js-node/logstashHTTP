@@ -39,12 +39,12 @@ function setupLogging(category, options) {
 
   const log4js = sandbox.require('log4js', {
     requires: {
-      '@log4js-node/logstashHTTP': appenderModule
+      '@log4js-node/logstash-http': appenderModule
     },
     ignoreMissing: true
   });
 
-  options.type = '@log4js-node/logstashHTTP';
+  options.type = '@log4js-node/logstash-http';
   log4js.configure({
     appenders: { http: options },
     categories: { default: { appenders: ['http'], level: 'trace' } }

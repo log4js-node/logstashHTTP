@@ -1,5 +1,5 @@
 {
-  "name": "@log4js-node/logstashHTTP",
+  "name": "@log4js-node/logstash-http",
   "version": "1.0.0",
   "description": "Logstash HTTP Appender for log4js-node",
   "homepage": "https://log4js-node.github.io/log4js-node/",
