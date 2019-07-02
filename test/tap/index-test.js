@@ -109,7 +109,7 @@ test('logstashappender', (batch) => {
       setup.fakeAxios.errorCb({ response: { status: 500, data: 'oh no' } });
       assert.equal(
         setup.fakeConsole.msg,
-        'log4js.logstashHTTP Appender error posting to http://localhost/receivers/rx1: 500 - oh no'
+        'log4js.logstashHTTP Appender error posting to http://localhost/receivers/rx1: 500 - "oh no"'
       );
       setup.fakeAxios.errorCb(new Error('oh dear'));
       assert.equal(setup.fakeConsole.msg, 'log4js.logstashHTTP Appender error: oh dear');
