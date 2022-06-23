@@ -31,8 +31,9 @@
   "scripts": {
     "prepush": "npm test",
     "commitmsg": "validate-commit-msg",
-    "pretest": "eslint 'lib/**/*.js' 'test/**/*.js'",
-    "test": "tap 'test/tap/**/*.js' --100",
+    "pretest": "eslint \"lib/**/*.js\" \"test/**/*.js\"",
+    "test": "tap test/tap/**/*.js --100",
+    "typings": "tsc -p types/tsconfig.json",
     "codecov": "tap 'test/tap/**/*.js' --cov --coverage-report=lcov && codecov"
   },
   "directories": {
@@ -55,6 +56,7 @@
     "log4js": "^6.4.0",
     "nyc": "^11.5.0",
     "tap": "^12.0.1",
+    "typescript": "^4.7.2",
     "validate-commit-msg": "^2.14.0"
   },
   "browser": {
