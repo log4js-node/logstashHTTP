@@ -70,7 +70,7 @@ test('logstashappender', (batch) => {
       application: 'logstash-sample',
       logType: 'application',
       logChannel: 'sample',
-      url: 'http://localhost/receivers/rx1'
+      url: 'http://localhost/receivers/rx1',
       agent,
     });
 
