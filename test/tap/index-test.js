@@ -1,5 +1,6 @@
 'use strict';
 
+const { Agent } = require('http');
 const test = require('tap').test;
 const sandbox = require('@log4js-node/sandboxed-module');
 const appender = require('../../lib');
@@ -64,11 +65,13 @@ test('logstashappender', (batch) => {
   });
 
   batch.test('when using HTTP receivers', (t) => {
+    const agent = new Agent();
     const setup = setupLogging('myCategory', {
       application: 'logstash-sample',
       logType: 'application',
       logChannel: 'sample',
       url: 'http://localhost/receivers/rx1'
+      agent,
     });
 
     t.test('axios should be configured', (assert) => {
@@ -76,6 +79,11 @@ test('logstashappender', (batch) => {
       assert.equal(setup.fakeAxios.config.timeout, 5000);
       assert.equal(setup.fakeAxios.config.withCredentials, true);
       assert.same(setup.fakeAxios.config.headers, { 'Content-Type': 'application/x-ndjson' });
+      // For some reason with the sandboxed tests, the instanceof Agent doesn't exist.
+      assert.match(setup.fakeAxios.config, {
+        httpAgent: Object,
+        httpsAgent: Object,
+      });
       assert.end();
     });
 

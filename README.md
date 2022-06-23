@@ -14,6 +14,7 @@ npm install log4js @log4js-node/logstash-http
 * `logChannel` - `string` (optional) - also used to identify your application's logs [but in a more specific way]
 * `logType` - `string` (optional) - used for the `type` field in the logstash data
 * `timeout` - `integer` (optional, defaults to 5000ms) - the timeout for the HTTP request.
+* `agent` - `http.Agent | https.Agent` (optional) - used to configure the requests being sent out if needed.
 
 This appender will also pick up Logger context values from the events, and add them as `p_` values in the logFaces event. See the example below for more details.
 
