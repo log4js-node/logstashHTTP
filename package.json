@@ -2,7 +2,7 @@
   "name": "@dreamworld/logstash-http",
   "version": "0.0.0-development",
   "description": "Logstash HTTP Appender for log4js-node",
-  "homepage": "https://log4js-node.github.io/log4js-node/",
+  "homepage": "https://github.com/DreamworldSolutions/logstashHTTP",
   "files": [
     "lib",
     "types"
@@ -20,10 +20,10 @@
   "author": "Gareth Jones <gareth.nomiddlename@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/log4js-node/logstashHTTP.git"
+    "url": "https://github.com/DreamworldSolutions/logstashHTTP.git"
   },
   "bugs": {
-    "url": "http://github.com/log4js-node/logstashHTTP/issues"
+    "url": "https://github.com/DreamworldSolutions/logstashHTTP/issues"
   },
   "engines": {
     "node": ">=6.0"
