@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-const sandbox = require('@log4js-node/sandboxed-module');
-const NYC = require('nyc');
+const sandbox = require("@log4js-node/sandboxed-module");
+const NYC = require("nyc");
 
 sandbox.configure({
   sourceTransformers: {
     nyc(source) {
-      if (this.filename.indexOf('node_modules') > -1) {
+      if (this.filename.indexOf("node_modules") > -1) {
         return source;
       }
       const nyc = new NYC({});
