@@ -140,7 +140,7 @@ test('logstashappender', (batch) => {
     const eventBody = JSON.parse(packet[1]);
 
     t.match(eventBody.message, /Log event #1 Error: something happened/);
-    t.match(eventBody.message, /at Test.batch.test/);
+    t.match(eventBody.message, /at (Test.batch.test|Test.<anonymous>)/);
     t.end();
   });
 
