@@ -42,7 +42,7 @@
     "lib": "lib"
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^1.6.0"
   },
   "devDependencies": {
     "@log4js-node/sandboxed-module": "^2.2.1",
