@@ -7,7 +7,6 @@ export interface LogstashHTTPAppender {
   timeout?: number; //defaults to 5000
   application?: string;
   logChannel?: string;
-  logType?: string;
   /** An http.Agent or https.Agent to allow configuring behavior as needed.
    * Make sure you use the correct type base on your url
    */

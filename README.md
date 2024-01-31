@@ -12,7 +12,6 @@ npm install log4js @log4js-node/logstash-http
 - `url` - `string` - logFaces receiver servlet URL
 - `application` - `string` (optional) - used to identify your application's logs
 - `logChannel` - `string` (optional) - also used to identify your application's logs [but in a more specific way]
-- `logType` - `string` (optional) - used for the `type` field in the logstash data
 - `timeout` - `integer` (optional, defaults to 5000ms) - the timeout for the HTTP request.
 - `agent` - `http.Agent | https.Agent` (optional) - used to configure the requests being sent out if needed.
 
@@ -27,7 +26,6 @@ log4js.configure({
       type: "@log4js-node/logstash-http",
       url: "http://localhost:9200/_bulk",
       application: "logstash-log4js",
-      logType: "application",
       logChannel: "node",
     },
   },

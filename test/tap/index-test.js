@@ -68,7 +68,6 @@ test("logstashappender", (batch) => {
     const agent = new Agent();
     const setup = setupLogging("myCategory", {
       application: "logstash-sample",
-      logType: "application",
       logChannel: "sample",
       url: "http://localhost/receivers/rx1",
       agent,
@@ -101,7 +100,6 @@ test("logstashappender", (batch) => {
       const eventHeader = JSON.parse(packet[0]);
       const eventBody = JSON.parse(packet[1]);
       assert.equal(eventHeader.index._index, "logstash-sample"); //eslint-disable-line
-      assert.equal(eventHeader.index._type, "application"); //eslint-disable-line
 
       assert.equal(eventBody.channel, "sample");
       assert.equal(eventBody.message, "Log event #1");
@@ -137,7 +135,6 @@ test("logstashappender", (batch) => {
   batch.test("should include stack traces in errors", (t) => {
     const setup = setupLogging("myCategory", {
       application: "logstash-sample",
-      logType: "application",
       logChannel: "sample",
       url: "http://localhost/receivers/rx1",
     });
